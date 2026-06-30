@@ -57,6 +57,7 @@ function escapeHtml(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace
 
 function findLabelPosition(rows,label){var lo=label.toLowerCase();for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){if(String(row[c]||'').trim().toLowerCase()===lo)return{row:r,col:c}}}return null}
 function findLabelValueSimple(rows,label){var pos=findLabelPosition(rows,label);if(!pos)return null;var row=rows[pos.row]||[];for(var k=pos.col+1;k<row.length;k++){var v=row[k];if(v!==''&&v!==null&&v!==undefined)return v}if(rows[pos.row+1]){var v2=rows[pos.row+1][pos.col];if(v2!==''&&v2!==null&&v2!==undefined)return v2}return null}
+function findLabelValueBelow(rows,label){var pos=findLabelPosition(rows,label);if(!pos)return null;if(rows[pos.row+1]){var v=rows[pos.row+1][pos.col];if(v!==''&&v!==null&&v!==undefined)return String(v).trim()}return null}
 
 function readRangeAsParagraphs(rows,r1,r2,c1,c2){
   var paras=[];
@@ -89,6 +90,7 @@ function parseProjectSheet(sheet){
   var data={projectName:String(pName).trim(),subtitle:'Executive Status Report',logoChar:String(pName).trim().charAt(0).toUpperCase(),market:findLabelValueSimple(rows,'Market')||'',ossdl:findLabelValueSimple(rows,'OSS DL')||'',pm:findLabelValueSimple(rows,'Project Manager')||'',bo:findLabelValueSimple(rows,'Business Owner')||'',tipo:findLabelValueSimple(rows,'Tipo')||'',phase:findLabelValueSimple(rows,'Phase')||'',rag:findLabelValueSimple(rows,'RAG')||'',budget:findLabelValueSimple(rows,'Budget'),priority:findLabelValueSimple(rows,'Priority')||'',startDate:findLabelValueSimple(rows,'Start Date')||'',endDate:findLabelValueSimple(rows,'End Date')||'',productionUrl:'',scopeParagraphs:[],todoItems:[],historyItems:[],team:[],links:[],macroPlan:null};
   data.scopeParagraphs=readRangeAsParagraphs(rows,20,37,1,12);
   data.todoItems=readRangeAsBullets(rows,20,37,13,23);
+  data.executiveSummary=findLabelValueBelow(rows,'Executive Summary')||'';
   var histBullets=readRangeAsBullets(rows,40,57,1,12);
   data.historyItems=histBullets.map(parseHistoryItem);
   var teamHeaderIdx=-1;var headerCols={};
