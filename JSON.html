@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Gerador de JSON — Status Report</title>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<style>
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:40px 20px;display:flex;flex-direction:column;align-items:center}
+  .card{background:#1e293b;border-radius:16px;padding:32px;max-width:720px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{color:#94a3b8;font-size:14px;margin-bottom:24px}
+  .drop{border:2px dashed #475569;border-radius:12px;padding:36px;text-align:center;cursor:pointer;transition:.2s}
+  .drop:hover{border-color:#38bdf8;background:#1a2c45}
+  .drop.dragover{border-color:#38bdf8;background:#1a2c45}
+  input[type=file]{display:none}
+  .btn{background:#2563eb;color:#fff;border:none;padding:12px 22px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-top:16px}
+  .btn:disabled{background:#475569;cursor:not-allowed}
+  .btn.secondary{background:#334155}
+  #log{margin-top:20px;font-size:13px;color:#94a3b8;white-space:pre-wrap;max-height:200px;overflow:auto;background:#0f172a;border-radius:8px;padding:12px;display:none}
+  #log.show{display:block}
+  .result{margin-top:20px;display:none}
+  .result.show{display:block}
+  .project-chip{display:inline-block;background:#16532b;color:#86efac;padding:4px 10px;border-radius:20px;font-size:13px;margin:4px 4px 0 0}
+  .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .filename{font-size:13px;color:#64748b;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>📦 Gerador de JSON — Status Report</h1>
+  <div class="sub">Carregue o arquivo <strong>.xlsx / .xlsm</strong> do portfólio e gere o <strong>projects.json</strong> para subir no SharePoint.</div>
+
+  <div class="drop" id="drop" onclick="document.getElementById('fileInput').click()">
+    <div style="font-size:32px">📂</div>
+    <div style="margin-top:8px">Clique ou arraste o arquivo .xlsx aqui</div>
+    <input type="file" id="fileInput" accept=".xlsx,.xlsm" />
+  </div>
+
+  <div id="log"></div>
+
+  <div class="result" id="result">
+    <div id="chips"></div>
+    <div class="actions">
+      <button class="btn" id="btnDownload">⬇️ Baixar projects.json</button>
+      <button class="btn secondary" id="btnCopy">📋 Copiar conteúdo JSON</button>
+    </div>
+    <div class="filename">Salve este arquivo no SharePoint com o nome <strong>projects.json</strong> (qualquer pasta que você já compartilhe), e me envie o link.</div>
+  </div>
+</div>
+
+<script>
+var IGNORED_SHEETS=["portfolio","dashboard","summary","resumo","index","cover","instructions","template","config","cp.dash","cp.info","summary_table","_support tickets","template_proj"];
+var GENERATED_JSON=null;
+
+function log(msg){var l=document.getElementById('log');l.classList.add('show');l.textContent+=msg+"\n"}
+function escapeHtml(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function findLabelPosition(rows,label){var lo=label.toLowerCase();for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){if(String(row[c]||'').trim().toLowerCase()===lo)return{row:r,col:c}}}return null}
+function findLabelValueSimple(rows,label){var pos=findLabelPosition(rows,label);if(!pos)return null;var row=rows[pos.row]||[];for(var k=pos.col+1;k<row.length;k++){var v=row[k];if(v!==''&&v!==null&&v!==undefined)return v}if(rows[pos.row+1]){var v2=rows[pos.row+1][pos.col];if(v2!==''&&v2!==null&&v2!==undefined)return v2}return null}
+
+function readRangeAsParagraphs(rows,r1,r2,c1,c2){
+  var paras=[];
+  for(var r=r1;r<=r2;r++){if(!rows[r])continue;for(var c=c1;c<=c2;c++){var v=String(rows[r][c]||'').trim();if(v){v.split(/\r?\n/).forEach(function(line){line=line.trim();if(line)paras.push(line)})}}}
+  return paras;
+}
+function readRangeAsBullets(rows,r1,r2,c1,c2){
+  var collected=[];
+  for(var r=r1;r<=r2;r++){if(!rows[r])continue;for(var c=c1;c<=c2;c++){var v=String(rows[r][c]||'').trim();if(v)collected.push(v)}}
+  var text=collected.join(' ');
+  text=text.replace(/[\u2013\u2014]/g,'-');
+  var parts=text.split(/(?:^|\s)-\s+/);
+  return parts.map(function(s){return s.trim()}).filter(Boolean);
+}
+
+function parseHistoryItem(text){
+  var t=String(text||'').trim();var date='Update',body=t;
+  var datePatterns=[/^(\d{1,2}\/\d{1,2}\/\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/,/^(\d{4}-\d{2}-\d{2})\s*[\u2014\u2013\-:]\s*(.+)$/,/^([A-Z][a-z]{2,9}\s+\d{1,2}(?:\s*[\-\u2013]\s*(?:[A-Z][a-z]{2,9}\s+)?\d{1,2})?,?\s+\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/,/^([A-Z][a-z]{2,9}\s*[\-\u2013\/]\s*[A-Z][a-z]{2,9}\s+\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/,/^([A-Z][a-z]{2,9}\s+\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/];
+  for(var i=0;i<datePatterns.length;i++){var m=t.match(datePatterns[i]);if(m){date=m[1].trim();body=m[2].trim();break}}
+  var html='';var titleMatch=body.match(/^([^:.\u2014\u2013]{3,80}?)\s*[:\u2014\u2013]\s*(.+)$/);
+  if(titleMatch){var title=titleMatch[1].trim();if(title.length>0)title=title.charAt(0).toUpperCase()+title.slice(1);html='<strong>'+escapeHtml(title)+'</strong> \u2014 '+escapeHtml(titleMatch[2].trim())}else{html=escapeHtml(body)}
+  var success=/go-live|launched|sucesso|lan\u00e7ado/i.test(body);
+  return{date:date,text:html,success:success};
+}
+
+function parseProjectSheet(sheet){
+  var rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false});
+  var pName=findLabelValueSimple(rows,'Project Name');
+  if(!pName)return null;
+  var data={projectName:String(pName).trim(),subtitle:'Executive Status Report',logoChar:String(pName).trim().charAt(0).toUpperCase(),market:findLabelValueSimple(rows,'Market')||'',ossdl:findLabelValueSimple(rows,'OSS DL')||'',pm:findLabelValueSimple(rows,'Project Manager')||'',bo:findLabelValueSimple(rows,'Business Owner')||'',tipo:findLabelValueSimple(rows,'Tipo')||'',phase:findLabelValueSimple(rows,'Phase')||'',rag:findLabelValueSimple(rows,'RAG')||'',budget:findLabelValueSimple(rows,'Budget'),priority:findLabelValueSimple(rows,'Priority')||'',startDate:findLabelValueSimple(rows,'Start Date')||'',endDate:findLabelValueSimple(rows,'End Date')||'',productionUrl:'',scopeParagraphs:[],todoItems:[],historyItems:[],team:[],links:[],macroPlan:null};
+  data.scopeParagraphs=readRangeAsParagraphs(rows,20,37,1,12);
+  data.todoItems=readRangeAsBullets(rows,20,37,13,23);
+  var histBullets=readRangeAsBullets(rows,40,57,1,12);
+  data.historyItems=histBullets.map(parseHistoryItem);
+  var teamHeaderIdx=-1;var headerCols={};
+  for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;var cols={};for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(lo==='vendor')cols.vendor=c;if(lo==='resource name')cols.name=c;if(lo==='function')cols.func=c;if(lo==='email')cols.email=c}if(cols.vendor!==undefined&&cols.name!==undefined&&cols.func!==undefined){teamHeaderIdx=r;headerCols=cols;break}}
+  if(teamHeaderIdx!==-1){var teamStop=['escope','scope','to do list','history','file log','macro plan','file name'];for(var r=teamHeaderIdx+1;r<rows.length;r++){var row=rows[r];if(!row)continue;var stop=false;for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(teamStop.indexOf(lo)!==-1){stop=true;break}}if(stop)break;var vendor=String(row[headerCols.vendor]||'').trim();var name=String(row[headerCols.name]||'').trim();var func=String(row[headerCols.func]||'').trim();var email=headerCols.email!==undefined?String(row[headerCols.email]||'').trim():'';if(!vendor&&!name&&!func&&!email)continue;data.team.push({vendor:vendor,name:name,func:func,email:email})}}
+  for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(lo==='production'||lo==='production env'||lo==='production environment'){for(var k=c+1;k<row.length;k++){var v=String(row[k]||'').trim();if(/^https?:\/\//.test(v)){data.productionUrl=v;break}}}}if(data.productionUrl)break}
+  if(data.productionUrl){data.links.push({icon:'\uD83C\uDF10',title:'Production Environment',url:data.productionUrl,display:data.productionUrl})}
+  for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(lo.indexOf('a&p exception')===0){for(var k=c+1;k<row.length;k++){var v=String(row[k]||'').trim();if(/^https?:\/\//.test(v)){data.links.push({icon:'\uD83D\uDD10',title:'A&P Exception',url:v,display:v});break}}}}}
+  var macroPos=findLabelPosition(rows,'Macro Plan');
+  if(macroPos){var headerRowIdx=-1;for(var r=macroPos.row+1;r<rows.length&&r<macroPos.row+5;r++){var row=rows[r];if(!row)continue;var hasHdr=false;for(var c=macroPos.col+1;c<row.length;c++){if(String(row[c]||'').trim()){hasHdr=true;break}}if(hasHdr){headerRowIdx=r;break}}if(headerRowIdx!==-1){var headerRow=rows[headerRowIdx];var headers=['Activity'];var colIndices=[];for(var c=macroPos.col+1;c<headerRow.length;c++){var hv=String(headerRow[c]||'').trim();if(hv){headers.push(hv);colIndices.push(c)}}var macroRows=[];for(var r=headerRowIdx+1;r<rows.length;r++){var row=rows[r];if(!row)break;var activity=String(row[macroPos.col]||'').trim();if(!activity){for(var c=0;c<=macroPos.col;c++){var v=String(row[c]||'').trim();if(v){activity=v;break}}}var cells=colIndices.map(function(ci){return String(row[ci]||'').trim()});var allEmpty=!activity&&cells.every(function(v){return v===''});if(allEmpty)break;if(!activity)continue;var actLo=activity.toLowerCase();if(['file name','owner','url','date'].indexOf(actLo)!==-1)break;macroRows.push({activity:activity,cells:cells})}if(macroRows.length){data.macroPlan={headers:headers,rows:macroRows}}}}
+  return data;
+}
+
+function processFile(file){
+  document.getElementById('log').textContent='';
+  document.getElementById('result').classList.remove('show');
+  log('📖 Lendo arquivo: '+file.name);
+  var reader=new FileReader();
+  reader.onload=function(evt){
+    try{
+      var data=new Uint8Array(evt.target.result);
+      var wb=XLSX.read(data,{type:'array',cellDates:true});
+      log('✅ Workbook lido. Abas encontradas: '+wb.SheetNames.length);
+      var projects={};var count=0;
+      wb.SheetNames.forEach(function(name){
+        if(IGNORED_SHEETS.indexOf(name.toLowerCase())!==-1){log('⏭️  Ignorando aba de controle: '+name);return}
+        try{
+          var parsed=parseProjectSheet(wb.Sheets[name]);
+          if(parsed){projects[name]=parsed;count++;log('✅ Projeto extraído: '+name+' ("'+parsed.projectName+'")')}
+          else{log('⚠️  Aba "'+name+'" ignorada (sem label "Project Name")')}
+        }catch(err){log('❌ Erro na aba "'+name+'": '+err.message)}
+      });
+      if(count===0){log('❌ Nenhum projeto válido encontrado.');return}
+      var payload={generatedAt:new Date().toISOString(),sourceFile:file.name,projects:projects};
+      GENERATED_JSON=JSON.stringify(payload,null,2);
+      log('\n🎉 JSON gerado com sucesso: '+count+' projeto(s).');
+      var chips=document.getElementById('chips');chips.innerHTML='';
+      Object.keys(projects).forEach(function(k){var s=document.createElement('span');s.className='project-chip';s.textContent=k;chips.appendChild(s)});
+      document.getElementById('result').classList.add('show');
+    }catch(err){log('❌ Erro ao processar arquivo: '+err.message)}
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+document.getElementById('fileInput').addEventListener('change',function(e){if(e.target.files[0])processFile(e.target.files[0])});
+var drop=document.getElementById('drop');
+drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('dragover')});
+drop.addEventListener('dragleave',function(){drop.classList.remove('dragover')});
+drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('dragover');if(e.dataTransfer.files[0])processFile(e.dataTransfer.files[0])});
+
+document.getElementById('btnDownload').addEventListener('click',function(){
+  if(!GENERATED_JSON)return;
+  var blob=new Blob([GENERATED_JSON],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download='projects.json';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+});
+document.getElementById('btnCopy').addEventListener('click',function(){
+  if(!GENERATED_JSON)return;
+  navigator.clipboard.writeText(GENERATED_JSON).then(function(){
+    var btn=document.getElementById('btnCopy');var orig=btn.textContent;btn.textContent='✅ Copiado!';setTimeout(function(){btn.textContent=orig},1800);
+  });
+});
+</script>
+</body>
+</html>
