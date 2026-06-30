@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///Users/DEMARA16/Downloads/Projects_Status_Report_General_3.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Executive Project Status Report — Multi-Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Executive Project Status Report — Multi-Project_files/css2" rel="stylesheet">
+<script src="./Executive Project Status Report — Multi-Project_files/xlsx.full.min.js"></script>
+<style>
+:root{--primary:#0072CE;--primary-dark:#003B6F;--primary-light:#E8F4FC;--accent-green:#22C55E;--accent-yellow:#F59E0B;--accent-red:#EF4444;--bg:#F7F9FC;--card:#FFFFFF;--text:#1A2332;--muted:#64748B;--border:#E2E8F0;--shadow:0 4px 20px rgba(0,0,0,0.06);--shadow-lg:0 10px 40px rgba(0, 60, 130, 0.12);}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+.container{max-width:1280px;margin:0 auto;padding:24px}
+.header{background:linear-gradient(135deg,#003B6F 0%,#0072CE 60%,#00A3E0 100%);border-radius:20px;padding:36px 40px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:18px}
+.header::before{content:"";position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.15) 0%,transparent 70%);border-radius:50%}
+.header::after{content:"";position:absolute;bottom:-100px;left:30%;width:400px;height:400px;background:radial-gradient(circle,rgba(0,163,224,0.25) 0%,transparent 70%);border-radius:50%}
+.header-content{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.brand{display:flex;align-items:center;gap:18px}
+.logo{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#fff 0%,#E8F4FC 100%);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;color:var(--primary-dark);box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+.title h1{font-size:30px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px}
+.title p{font-size:14px;opacity:0.92;font-weight:400}
+.header-meta{text-align:right;font-size:13px;opacity:0.95}
+.header-meta strong{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
+.project-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--primary-dark);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:600;box-shadow:var(--shadow);margin-bottom:24px;border:1px solid var(--border)}
+.project-badge .pulse{width:9px;height:9px;border-radius:50%;background:var(--accent-green);box-shadow:0 0 0 4px rgba(34,197,94,0.25)}
+.toolbar{display:flex;justify-content:flex-end;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+.toolbar-left{flex:1;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.select-wrap{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:6px 14px;box-shadow:var(--shadow)}
+.select-wrap label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+.select-wrap select{border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--primary-dark);padding:8px 4px;cursor:pointer;outline:none;min-width:200px}
+.btn{background:#fff;color:var(--primary-dark);border:1px solid var(--border);padding:11px 20px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:var(--shadow);transition:all 0.2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none}
+.btn-primary:hover{box-shadow:0 8px 24px rgba(0,114,206,0.4)}
+.btn-danger{background:#fff;color:var(--accent-red);border:1px solid #FCA5A5}
+.btn-sm{padding:6px 12px;font-size:12px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:24px}
+.kpi{background:var(--card);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform 0.2s ease, box-shadow 0.2s ease}
+.kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.kpi-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:8px}
+.kpi-value{font-size:22px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+.kpi-icon{font-size:22px}
+.kpi-accent{position:absolute;top:0;left:0;width:4px;height:100%}
+.kpi-accent.green{background:var(--accent-green)}.kpi-accent.blue{background:var(--primary)}.kpi-accent.red{background:var(--accent-red)}.kpi-accent.gold{background:var(--accent-yellow)}
+.status-dot{width:12px;height:12px;border-radius:50%;background:var(--accent-green);box-shadow:0 0 0 4px rgba(34,197,94,0.2);display:inline-block}
+.section{background:var(--card);border-radius:16px;padding:28px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:24px}
+.section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--primary-dark);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.section-title::before{content:"";width:4px;height:18px;background:linear-gradient(180deg,var(--primary),var(--accent-green));border-radius:4px}
+.snapshot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 28px}
+.info-item{display:flex;flex-direction:column;gap:4px;padding:10px 0;border-bottom:1px dashed var(--border)}
+.info-item:last-child{border-bottom:none}
+.info-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;font-weight:600}
+.info-value{font-size:14px;color:var(--text);font-weight:500;word-break:break-word}
+.info-value a{color:var(--primary);text-decoration:none;font-weight:500}
+.info-value a:hover{text-decoration:underline}
+.progress-wrap{margin-top:20px}
+.progress-header{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600}
+.progress-bar{width:100%;height:10px;background:#E8EEF5;border-radius:10px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent-green));border-radius:10px;transition:width 1s ease}
+.progress-status{display:flex;justify-content:space-between;font-size:11px;margin-top:6px;color:var(--muted)}
+.scope-block p{font-size:14.5px;line-height:1.7;color:var(--text);text-align:justify;margin-bottom:12px}
+.scope-block p:last-child{margin-bottom:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+@media (max-width:880px){.two-col{grid-template-columns:1fr}}
+.team-table{width:100%;border-collapse:collapse;font-size:13px}
+.team-table th{text-align:left;padding:10px 12px;background:#F1F5FB;color:var(--primary-dark);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;border-bottom:2px solid var(--border)}
+.team-table td{padding:12px;border-bottom:1px solid var(--border);color:var(--text)}
+.team-table tr:last-child td{border-bottom:none}
+.team-table tr:hover td{background:#FAFBFD}
+.team-table .vendor-pill{display:inline-block;padding:3px 10px;background:#E8F4FC;color:var(--primary-dark);border-radius:20px;font-size:11px;font-weight:600}
+.link-list{display:flex;flex-direction:column;gap:12px}
+.link-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,#F7FAFD,#FFFFFF);border:1px solid var(--border);transition:all 0.2s ease;text-decoration:none;color:var(--text)}
+.link-item:hover{border-color:var(--primary);transform:translateX(4px);box-shadow:var(--shadow)}
+.link-icon{width:36px;height:36px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.link-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.link-url{font-size:11px;color:var(--muted);word-break:break-all}
+.todo-list{list-style:none}
+.todo-list li{padding:14px 16px;background:#F9FBFD;border-left:3px solid var(--primary);border-radius:0 8px 8px 0;margin-bottom:10px;font-size:14px;line-height:1.6;display:flex;gap:12px;align-items:flex-start}
+.todo-list li::before{content:"\25CB";color:var(--primary);font-weight:bold;font-size:16px;flex-shrink:0;line-height:1.4}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--primary),var(--accent-green))}
+.timeline-item{position:relative;padding-bottom:22px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-25px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--primary);box-shadow:0 0 0 4px rgba(0,114,206,0.12)}
+.timeline-item.success .timeline-dot{border-color:var(--accent-green);box-shadow:0 0 0 4px rgba(34,197,94,0.18)}
+.timeline-date{font-size:12px;font-weight:700;color:var(--primary-dark);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.timeline-item.success .timeline-date{color:var(--accent-green)}
+.timeline-text{font-size:13.5px;color:var(--text);line-height:1.6}
+.macro-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+.macro-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;min-width:700px}
+.macro-table th,.macro-table td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:center;white-space:nowrap}
+.macro-table thead th{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;position:sticky;top:0}
+.macro-table thead th:first-child{text-align:left;border-top-left-radius:10px}
+.macro-table thead th:last-child{border-top-right-radius:10px}
+.macro-table tbody td:first-child{text-align:left;font-weight:600;color:var(--text);background:#F9FBFD;position:sticky;left:0;border-right:1px solid var(--border);min-width:240px}
+.macro-table tbody tr:nth-child(even) td{background:#FAFCFE}
+.macro-table tbody tr:nth-child(even) td:first-child{background:#F4F8FC}
+.macro-table td.filled{background:linear-gradient(135deg,var(--primary),#3493DE) !important;color:#fff;font-weight:700;border-radius:4px}
+.empty-state{padding:30px;text-align:center;color:var(--muted);font-style:italic;font-size:14px;background:#F9FBFD;border-radius:10px;border:1px dashed var(--border)}
+.footer{text-align:center;padding:28px 20px;color:var(--muted);font-size:12px;line-height:1.7;border-top:1px solid var(--border);margin-top:24px}
+.footer strong{color:var(--primary-dark)}
+.disclaimer{margin-top:6px;font-style:italic;font-size:11px;opacity:0.8}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--primary-dark);color:#fff;padding:14px 22px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:var(--shadow-lg);transform:translateY(100px);opacity:0;transition:all 0.3s ease;z-index:2000;display:flex;align-items:center;gap:10px;max-width:420px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.error{background:var(--accent-red)}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,30,55,0.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1500;padding:60px 20px;overflow-y:auto}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;width:100%;max-width:560px;border-radius:18px;padding:28px;box-shadow:var(--shadow-lg);position:relative;animation:slideUp 0.25s ease}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:#F1F5FB;cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:#E2E8F0;color:var(--text)}
+.modal h2{font-size:20px;font-weight:700;color:var(--primary-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.modal .subtitle{font-size:13px;color:var(--muted);margin-bottom:22px}
+.modal-section{margin-bottom:22px}
+.modal-section h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;font-weight:700}
+.modal-form{display:flex;gap:8px;flex-wrap:wrap}
+.modal-form input{flex:1;min-width:220px;padding:11px 14px;border:1px solid var(--border);border-radius:10px;font-family:inherit;font-size:14px;outline:none;transition:border 0.2s}
+.modal-form input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,114,206,0.15)}
+.admin-list{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto}
+.admin-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#F7FAFD;border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:500;color:var(--text)}
+.admin-item span:first-child{display:flex;align-items:center;gap:8px}
+.admin-item .tab-pill{background:var(--primary-light);color:var(--primary-dark);font-size:10px;padding:3px 8px;border-radius:12px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.modal-hint{background:#FFF7E6;border-left:3px solid var(--accent-yellow);padding:10px 12px;border-radius:6px;font-size:12px;color:#73510F;margin-top:10px}
+@media print{body{background:#fff}.toolbar,.toast,.modal-overlay,.project-badge{display:none !important}.header{box-shadow:none;border-radius:0}.section,.kpi{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}.container{max-width:100%;padding:10px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-content">
+      <div class="brand">
+        <div class="logo" id="projectLogo">V</div>
+        <div class="title">
+          <h1 id="headerProjectName">Vesta Connexus 2.0</h1>
+          <p id="headerSubtitle">Executive Status Report</p>
+        </div>
+      </div>
+      <div class="header-meta"><strong>Report Date</strong><span id="reportDate">June 30, 2026</span></div>
+    </div>
+  </div>
+  <div class="project-badge"><span class="pulse"></span> Visualizando: <strong id="currentProjectLabel">Vesta</strong></div>
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <div class="select-wrap"><label for="projectSelect">Projeto:</label><select id="projectSelect"><option value="PfizerConmigo - New Components">PfizerConmigo - New Components</option><option value="www.crecemos.mx - migration">www.crecemos.mx - migration</option><option value="edirai.com.mx - migration H2">edirai.com.mx - migration H2</option><option value="Vesta">Vesta</option><option value="Vesta AI (Phase II)">Vesta AI (Phase II)</option><option value="Pfizerpro - Mejoras generales">Pfizerpro - Mejoras generales</option><option value="Ngenla digital pen calculator">Ngenla digital pen calculator</option><option value="MEDU Integration">MEDU Integration</option><option value="Mis Vacunas MX">Mis Vacunas MX</option><option value="PfizerPro NOLA - Consolidacion">PfizerPro NOLA - Consolidacion</option><option value="PfizerConmigo NOLA - Consolidac">PfizerConmigo NOLA - Consolidac</option><option value="ALM Panamá">ALM Panamá</option></select></div>
+    </div>
+    <input type="file" id="fileInput" accept=".xlsx,.xlsm" style="display:none">
+    <button class="btn" onclick="openAdminModal()">⚙️ Admin</button>
+    <button class="btn btn-primary" id="btnSync" onclick="syncFromGist(false)">🔄 Atualizar dados</button>
+    <button class="btn" onclick="document.getElementById(&#39;fileInput&#39;).click()" title="Upload manual de .xlsx como alternativa">📂 Upload manual (.xlsx)</button>
+    <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-accent green"></div><div class="kpi-label">RAG Status</div><div class="kpi-value"><span class="status-dot" id="ragDot" style="background: rgb(34, 197, 94); box-shadow: rgba(34, 197, 94, 0.2) 0px 0px 0px 4px;"></span><span id="kpiRag">GREEN</span></div></div>
+    <div class="kpi"><div class="kpi-accent blue"></div><div class="kpi-label">Current Phase</div><div class="kpi-value"><span class="kpi-icon">⚙️</span><span id="kpiPhase">Hypercare</span></div></div>
+    <div class="kpi"><div class="kpi-accent red"></div><div class="kpi-label">Priority</div><div class="kpi-value"><span class="kpi-icon">⚡</span><span id="kpiPriority">Urgent</span></div></div>
+    <div class="kpi"><div class="kpi-accent gold"></div><div class="kpi-label">Budget</div><div class="kpi-value"><span class="kpi-icon">💰</span><span id="kpiBudget">US$ 407,000</span></div></div>
+  </div>
+  <div class="section">
+    <div class="section-title">Project Snapshot</div>
+    <div class="snapshot-grid">
+      <div class="info-item"><span class="info-label">Project Name</span><span class="info-value" id="snProjectName">Vesta Connexus 2.0</span></div>
+      <div class="info-item"><span class="info-label">Market</span><span class="info-value" id="snMarket">USA</span></div>
+      <div class="info-item"><span class="info-label">OSS Delivery Lead</span><span class="info-value" id="snOssdl">André Demarche</span></div>
+      <div class="info-item"><span class="info-label">Project Manager</span><span class="info-value" id="snPm">Jesus Romero</span></div>
+      <div class="info-item"><span class="info-label">Business Owner</span><span class="info-value" id="snBo">David Jansen</span></div>
+      <div class="info-item"><span class="info-label">Type</span><span class="info-value" id="snTipo">Project</span></div>
+      <div class="info-item"><span class="info-label">Start Date</span><span class="info-value" id="snStart">9/23/25</span></div>
+      <div class="info-item"><span class="info-label">End Date</span><span class="info-value" id="snEnd">5/14/26</span></div>
+      <div class="info-item"><span class="info-label">Production URL</span><span class="info-value" id="snUrl"><a href="https://vesta.pfizer.com/" target="_blank">vesta.pfizer.com/</a></span></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-header"><span>Project Timeline Progress</span><span id="progressPct">100% complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 100%;"></div></div>
+      <div class="progress-status"><span id="progStart">9/23/25</span><span id="progEnd">5/14/26</span></div>
+    </div>
+  </div>
+  <div class="section"><div class="section-title">Scope &amp; Objective</div><div class="scope-block" id="scopeBlock"><p>Vesta / Connexus 2.0 is the modernization of Pfizer Oncology’s strategic CRM, replacing/upgrading the legacy Connexus solution into a more scalable, secure, and sustainable web application built on Laravel + Vue.js, with RBAC, audit trails, improved UI/UX, configurable project/milestone workflows, integration with CDW/Snowflake/Power BI, embedded dashboards, data migration, validations, operational support, and preparation for governance/compliance in production.</p></div></div>
+  <div class="two-col">
+    <div class="section"><div class="section-title">Project Team</div>
+      <table class="team-table" id="teamTable"><thead><tr><th>Vendor</th><th>Resource</th><th>Function</th><th>Email</th></tr></thead><tbody><tr><td><span class="vendor-pill">Jakala</span></td><td>Tsveta Valcheva</td><td>PM</td><td><a href="mailto:Tsvetana.Valcheva@pfizer.com">Tsvetana.Valcheva@pfizer.com</a></td></tr><tr><td><span class="vendor-pill">Jakala</span></td><td>Hanna Andriiak</td><td>Back-End Dev.</td><td><a href="mailto:hanna.andriiak@pfizer.com">hanna.andriiak@pfizer.com</a></td></tr><tr><td><span class="vendor-pill">CFSA</span></td><td>Maciej Chojnowski</td><td>Data Engeneer</td><td><a href="mailto:maciej.chojnowski@pfizer.com">maciej.chojnowski@pfizer.com</a></td></tr><tr><td><span class="vendor-pill">Jakala</span></td><td>Roman Liashenko</td><td>PM</td><td><a href="mailto:Roman.Liashenko@pfizer.com">Roman.Liashenko@pfizer.com</a></td></tr></tbody></table>
+    </div>
+    <div class="section"><div class="section-title">Key Links</div><div class="link-list" id="linkList"><a class="link-item" target="_blank" href="https://vesta.pfizer.com/"><div class="link-icon">🌐</div><div><div class="link-title">Production Environment</div><div class="link-url">https://vesta.pfizer.com/</div></div></a><a class="link-item" target="_blank" href="https://jira.pfizer.com/servicedesk/customer/portal/65/VRSD-761"><div class="link-icon">🔐</div><div><div class="link-title">A&amp;P Exception</div><div class="link-url">https://jira.pfizer.com/servicedesk/customer/portal/65/VRSD-761</div></div></a></div></div>
+  </div>
+  <div class="section"><div class="section-title">Next Steps — To-Do List</div><ul class="todo-list" id="todoList"><li>Finalize and validate Vesta Snowflake views so the team can assess the data and move to production.</li><li>Close the definition of Snowflake roles for Vesta consumption, separating admin/full-access and viewer/read-only roles.</li><li>Confirm whether the only consumption/management schema for business users is the BI/published schema, and ensure views are hosted there.</li><li>Complete the Request Manager workflow for assigning VESTA roles, including approvals, training, and overnight job updates.</li><li>Create/update the final conceptual/physical model or publication documentation for Vesta→Snowflake after views are finalized.</li><li>Advance the open item “Sales KPIs Ingestion”, assessing incremental strategy vs truncate-and-load due to higher-than-expected data volumes.</li><li>Define the Vesta → Pfizer Align flow, currently interim/manual via Excel with preference for automation.</li><li>Finalize CDW→Snowflake refresh frequency, including schema and import schedule.</li><li>Validate vendor data samples for Pathways, currently under review.</li></ul></div>
+  <div class="section"><div class="section-title">Project History &amp; Milestones</div><div class="timeline" id="timeline"><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">'Oct 23, 2025</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>BRD formalization</strong> — BRD defined the CRM modernization scope, including RBAC, audit logging, Snowflake/CDW/Power BI integration, migration, validation, and compliance.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Oct 30, 2025</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Initial RAIDD decisions</strong> — Key functional decisions included single-date milestones, initiative status logic, and removal of timeline visualization.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Nov 17, 2025</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Roles &amp; user management start</strong> — Roles/permissions and user management modules began, reaching UAT status.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jan-Mar 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Data &amp; integration progress</strong> — Work advanced on Sales KPIs, Snowflake→S3, refresh frequency, ETL fixes, and Vesta→Pfizer Align.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Feb 6, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Snowflake→S3 unblocked</strong> — Data publication enabled after roles update resolved blocker.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Mar 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Migration consolidation</strong> — Connexus→Vesta migration defined (CSV export, transform, import, validation).</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Apr 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Data integration SOW</strong> — SOW requested and updated for Snowflake integration and future data scope.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Apr 30-May 8, 2026</div></div><div class="timeline-item success"><div class="timeline-dot"></div><div class="timeline-date">Update ✅</div><div class="timeline-text"><strong>Pre-go-live stabilization</strong> — Performance tuning, monitoring, and infra improvements confirmed readiness for go-live.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">May 14, 2026</div></div><div class="timeline-item success"><div class="timeline-dot"></div><div class="timeline-date">Update ✅</div><div class="timeline-text"><strong>Phase I go-live</strong> — Vesta launched, replacing Connexus with modern CRM, analytics, and integrations.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">May 15, 2026</div></div><div class="timeline-item success"><div class="timeline-dot"></div><div class="timeline-date">Update ✅</div><div class="timeline-text"><strong>Post-go-live adjustment</strong> — Vesta defined as source of truth for KAD/CKAD fields; cleanup actions initiated.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jun 9, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Snowflake governance</strong> — Views prepared for evaluation; BI/published schema defined as consumption layer.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jun 15, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Access/roles process</strong> — Request Manager flow clarified (approvals, training, overnight updates).</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jun 18, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Roles &amp; views refinement</strong> — Admin and viewer roles planned; views still under validation before production.</div></div></div></div>
+  <div class="section"><div class="section-title">Macro Plan</div><div id="macroPlanContainer"><div class="macro-wrap"><table class="macro-table"><thead><tr><th>Activity</th><th>W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th><th>W6</th><th>W7</th><th>W8</th><th>W9</th><th>W10</th><th>W11</th><th>W12</th><th>W13</th><th>W14</th><th>W15</th><th>W16</th><th>W17</th><th>W18</th><th>W19</th><th>W20</th></tr></thead><tbody><tr><td>Teste 1</td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 2</td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 3</td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 4</td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 5</td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 6</td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 7</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 15</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 16</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td class="filled"></td><td class="filled"></td><td class="filled"></td><td class="filled"></td></tr></tbody></table></div></div></div>
+  <div class="footer"><strong>Prepared by André Liguori Demarche</strong> · OSS &amp; AI Delivery Lead, LATAM · Pfizer<br><span class="disclaimer">Confidential — for internal stakeholders only.</span></div>
+</div>
+<div class="modal-overlay" id="adminModal" onclick="if(event.target===this) closeAdminModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdminModal()">✕</button>
+    <h2>⚙️ Admin — Gerenciar Projetos</h2>
+    <p class="subtitle">Adicione manualmente uma nova aba do seu arquivo .xlsx como projeto.</p>
+    <div class="modal-section">
+      <h3>Adicionar nova aba</h3>
+      <div class="modal-form">
+        <input type="text" id="newTabName" placeholder="Ex: Vesta AI (Phase II)">
+        <button class="btn btn-primary" onclick="addProjectFromTab()">+ Adicionar projeto</button>
+      </div>
+      <div class="modal-hint" id="modalHint">💡 Carregue primeiro o arquivo .xlsm com o botão "Atualizar dados".</div>
+    </div>
+    <div class="modal-section"><h3>Projetos carregados</h3><div class="admin-list" id="adminList"><div class="admin-item"><span><span class="tab-pill">Tab</span> PfizerConmigo - New Components</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;PfizerConmigo - New Components&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> www.crecemos.mx - migration</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;www.crecemos.mx - migration&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> edirai.com.mx - migration H2</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;edirai.com.mx - migration H2&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Vesta</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Vesta&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Vesta AI (Phase II)</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Vesta AI (Phase II)&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Pfizerpro - Mejoras generales</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Pfizerpro - Mejoras generales&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Ngenla digital pen calculator</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Ngenla digital pen calculator&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> MEDU Integration</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;MEDU Integration&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Mis Vacunas MX</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Mis Vacunas MX&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> PfizerPro NOLA - Consolidacion</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;PfizerPro NOLA - Consolidacion&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> PfizerConmigo NOLA - Consolidac</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;PfizerConmigo NOLA - Consolidac&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> ALM Panamá</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;ALM Panamá&#39;)">🗑️ Remover</button></div></div></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+var LOADED_WORKBOOK=null;var PROJECTS={};var CURRENT_PROJECT="Vesta";
+var IGNORED_SHEETS=["portfolio","dashboard","summary","resumo","index","cover","instructions","template","config","cp.dash","cp.info","summary_table","_support tickets","template_proj"];
+PROJECTS["Vesta"]={projectName:"Vesta / Connexus 2.0",subtitle:"Pfizer Oncology CRM Modernization \u2014 Executive Status Report",logoChar:"V",market:"USA",ossdl:"Andr\u00e9 Demarche",pm:"Jesus Romero",bo:"David Jansen",tipo:"Project",phase:"Hypercare",rag:"GREEN",budget:407000,priority:"Urgent",startDate:"09/23/2025",endDate:"05/14/2026",productionUrl:"https://vesta.pfizer.com/",
+scopeParagraphs:["Vesta / Connexus 2.0 is the modernization of Pfizer Oncology's strategic CRM, replacing/upgrading the legacy Connexus solution into a more scalable, secure, and sustainable web application built on Laravel + Vue.js, with RBAC, audit trails, improved UI/UX, configurable project/milestone workflows, integration with CDW/Snowflake/Power BI, embedded dashboards, data migration, validations, operational support, and preparation for governance/compliance in production."],
+todoItems:["Finalize and validate Vesta Snowflake views so the team can assess the data and move to production.","Close the definition of Snowflake roles for Vesta consumption, separating admin/full-access and viewer/read-only roles.","Confirm whether the only consumption/management schema for business users is the BI/published schema, and ensure views are hosted there.","Complete the Request Manager workflow for assigning VESTA roles, including approvals, training, and overnight job updates.","Create/update the final conceptual/physical model or publication documentation for Vesta\u2192Snowflake after views are finalized.","Advance the open item \"Sales KPIs Ingestion\", assessing incremental strategy vs truncate-and-load due to higher-than-expected data volumes.","Define the Vesta \u2192 Pfizer Align flow, currently interim/manual via Excel with preference for automation.","Finalize CDW\u2192Snowflake refresh frequency, including schema and import schedule.","Validate vendor data samples for Pathways, currently under review."],
+historyItems:[
+{date:"Oct 23, 2025",text:"<strong>BRD formalization</strong> \u2014 BRD defined the CRM modernization scope, including RBAC, audit logging, Snowflake/CDW/Power BI integration, migration, validation, and compliance.",success:false},
+{date:"Oct 30, 2025",text:"<strong>Initial RAIDD decisions</strong> \u2014 Key functional decisions included single-date milestones, initiative status logic, and removal of timeline visualization.",success:false},
+{date:"Nov 17, 2025",text:"<strong>Roles &amp; user management start</strong> \u2014 Roles/permissions and user management modules began, reaching UAT status.",success:false},
+{date:"Jan\u2013Mar 2026",text:"<strong>Data &amp; integration progress</strong> \u2014 Work advanced on Sales KPIs, Snowflake\u2192S3, refresh frequency, ETL fixes, and Vesta\u2192Pfizer Align.",success:false},
+{date:"Feb 6, 2026",text:"<strong>Snowflake\u2192S3 unblocked</strong> \u2014 Data publication enabled after roles update resolved blocker.",success:false},
+{date:"Mar 2026",text:"<strong>Migration consolidation</strong> \u2014 Connexus\u2192Vesta migration defined (CSV export, transform, import, validation).",success:false},
+{date:"Apr 2026",text:"<strong>Data integration SOW</strong> \u2014 SOW requested and updated for Snowflake integration and future data scope.",success:false},
+{date:"Apr 30 \u2013 May 8, 2026",text:"<strong>Pre\u2013go-live stabilization</strong> \u2014 Performance tuning, monitoring, and infra improvements confirmed readiness for go-live.",success:false},
+{date:"May 14, 2026",text:"<strong>Phase I go-live</strong> \u2014 Vesta launched, replacing Connexus with modern CRM, analytics, and integrations.",success:true},
+{date:"May 15, 2026",text:"<strong>Post\u2013go-live adjustment</strong> \u2014 Vesta defined as source of truth for KAD/CKAD fields; cleanup actions initiated.",success:false},
+{date:"Jun 9, 2026",text:"<strong>Snowflake governance</strong> \u2014 Views prepared for evaluation; BI/published schema defined as consumption layer.",success:false},
+{date:"Jun 15, 2026",text:"<strong>Access/roles process</strong> \u2014 Request Manager flow clarified (approvals, training, overnight updates).",success:false},
+{date:"Jun 18, 2026",text:"<strong>Roles &amp; views refinement</strong> \u2014 Admin and viewer roles planned; views still under validation before production.",success:false}
+],
+team:[{vendor:"Jakala",name:"Tsveta Valcheva",func:"PM",email:"Tsvetana.Valcheva@pfizer.com"},{vendor:"Jakala",name:"Hanna Andriiak",func:"Back-End Dev.",email:"hanna.andriiak@pfizer.com"},{vendor:"CFSA",name:"Maciej Chojnowski",func:"Data Engineer",email:"maciej.chojnowski@pfizer.com"},{vendor:"Jakala",name:"Roman Liashenko",func:"PM",email:"Roman.Liashenko@pfizer.com"}],
+links:[{icon:"\uD83C\uDF10",title:"Production Environment",url:"https://vesta.pfizer.com/",display:"https://vesta.pfizer.com/"},{icon:"\uD83D\uDD10",title:"A&P Exception",url:"https://jira.pfizer.com/servicedesk/customer/portal/65/VRSD-761",display:"jira.pfizer.com/servicedesk/.../VRSD-761"}],
+macroPlan:{headers:["Activity","Sep 2025","Oct 2025","Nov 2025","Dec 2025","Jan 2026","Feb 2026","Mar 2026","Apr 2026","May 2026","Jun 2026"],rows:[
+{activity:"Discovery / BRD",cells:["X","X","","","","","","","",""]},
+{activity:"RAIDD & Functional Design",cells:["","X","X","","","","","","",""]},
+{activity:"Development - Roles & User Mgmt",cells:["","","X","X","X","","","","",""]},
+{activity:"Data Integration (Snowflake/CDW)",cells:["","","","X","X","X","X","X","",""]},
+{activity:"Migration Connexus \u2192 Vesta",cells:["","","","","","X","X","","",""]},
+{activity:"UAT & Stabilization",cells:["","","","","","","","X","X",""]},
+{activity:"Go-Live Phase I",cells:["","","","","","","","","X",""]},
+{activity:"Hypercare & Governance",cells:["","","","","","","","","X","X"]}
+]}};
+
+function fmtDate(d){return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
+function parseDate(str){if(!str)return null;if(str instanceof Date)return str;var m=String(str).match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)return new Date(+m[3],+m[1]-1,+m[2]);var d=new Date(str);return isNaN(d.getTime())?null:d}
+function fmtDateShort(v){if(v instanceof Date){var mm=String(v.getMonth()+1).padStart(2,'0');var dd=String(v.getDate()).padStart(2,'0');return mm+'/'+dd+'/'+v.getFullYear()}return String(v||'')}
+function escapeHtml(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function showToast(msg,isError){var t=document.getElementById('toast');t.textContent=(isError?'\u26A0\uFE0F ':'\u2705 ')+msg;t.classList.toggle('error',!!isError);t.classList.add('show');setTimeout(function(){t.classList.remove('show')},4500)}
+
+function renderProject(name){
+  var p=PROJECTS[name];if(!p){showToast('Projeto n\u00e3o encontrado: '+name,true);return}
+  CURRENT_PROJECT=name;
+  document.getElementById('headerProjectName').textContent=p.projectName||name;
+  document.getElementById('headerSubtitle').textContent=p.subtitle||'Executive Status Report';
+  document.getElementById('projectLogo').textContent=(p.logoChar||(p.projectName||name).charAt(0)).toUpperCase();
+  document.getElementById('currentProjectLabel').textContent=name;
+  var rag=(p.rag||'').toString().toUpperCase();
+  document.getElementById('kpiRag').textContent=rag||'\u2014';
+  var dot=document.getElementById('ragDot');
+  var dotColor=rag==='RED'?'#EF4444':rag==='YELLOW'?'#F59E0B':rag==='HOLD'?'#94A3B8':'#22C55E';
+  var dotShadow=rag==='RED'?'rgba(239,68,68,0.2)':rag==='YELLOW'?'rgba(245,158,11,0.2)':rag==='HOLD'?'rgba(148,163,184,0.2)':'rgba(34,197,94,0.2)';
+  dot.style.background=dotColor;dot.style.boxShadow='0 0 0 4px '+dotShadow;
+  document.getElementById('kpiPhase').textContent=p.phase||'\u2014';
+  document.getElementById('kpiPriority').textContent=p.priority||'\u2014';
+  var bud=p.budget,budTxt='\u2014';
+  if(bud!==null&&bud!==undefined&&bud!==''){var num=typeof bud==='number'?bud:parseFloat(String(bud).replace(/[^0-9.]/g,''));budTxt=isNaN(num)?String(bud):('US$ '+num.toLocaleString('en-US'))}
+  document.getElementById('kpiBudget').textContent=budTxt;
+  document.getElementById('snProjectName').textContent=p.projectName||name;
+  document.getElementById('snMarket').textContent=p.market||'\u2014';
+  document.getElementById('snOssdl').textContent=p.ossdl||'\u2014';
+  document.getElementById('snPm').textContent=p.pm||'\u2014';
+  document.getElementById('snBo').textContent=p.bo||'\u2014';
+  document.getElementById('snTipo').textContent=p.tipo||'\u2014';
+  document.getElementById('snStart').textContent=fmtDateShort(p.startDate)||'\u2014';
+  document.getElementById('snEnd').textContent=fmtDateShort(p.endDate)||'\u2014';
+  document.getElementById('progStart').textContent=fmtDateShort(p.startDate)||'\u2014';
+  document.getElementById('progEnd').textContent=fmtDateShort(p.endDate)||'\u2014';
+  var urlEl=document.getElementById('snUrl');
+  if(p.productionUrl){urlEl.innerHTML='<a href="'+escapeHtml(p.productionUrl)+'" target="_blank">'+escapeHtml(p.productionUrl.replace(/^https?:\/\//,''))+'</a>'}else{urlEl.textContent='\u2014'}
+  updateProgress(p.startDate,p.endDate);
+  var scopeBlock=document.getElementById('scopeBlock');scopeBlock.innerHTML='';
+  var paras=(p.scopeParagraphs&&p.scopeParagraphs.length)?p.scopeParagraphs:['Sem descri\u00e7\u00e3o de escopo definida para este projeto.'];
+  paras.forEach(function(par){var pe=document.createElement('p');pe.textContent=par;scopeBlock.appendChild(pe)});
+  var tbody=document.querySelector('#teamTable tbody');tbody.innerHTML='';
+  var team=(p.team&&p.team.length)?p.team:[];
+  if(!team.length){var trE=document.createElement('tr');trE.innerHTML='<td colspan="4" style="text-align:center;color:var(--muted);font-style:italic;padding:24px">Time do projeto n\u00e3o definido.</td>';tbody.appendChild(trE)}
+  else{team.forEach(function(t){var tr=document.createElement('tr');tr.innerHTML='<td><span class="vendor-pill">'+escapeHtml(t.vendor||'-')+'</span></td><td>'+escapeHtml(t.name||'-')+'</td><td>'+escapeHtml(t.func||'-')+'</td><td>'+(t.email?'<a href="mailto:'+escapeHtml(t.email)+'">'+escapeHtml(t.email)+'</a>':'-')+'</td>';tbody.appendChild(tr)})}
+  var linkList=document.getElementById('linkList');linkList.innerHTML='';
+  var links=(p.links&&p.links.length)?p.links:[];
+  if(!links.length){linkList.innerHTML='<div class="empty-state">Nenhum link dispon\u00edvel.</div>'}
+  else{links.forEach(function(l){var a=document.createElement('a');a.className='link-item';a.target='_blank';a.href=l.url;a.innerHTML='<div class="link-icon">'+escapeHtml(l.icon||'\uD83D\uDD17')+'</div><div><div class="link-title">'+escapeHtml(l.title||l.url)+'</div><div class="link-url">'+escapeHtml(l.display||l.url)+'</div></div>';linkList.appendChild(a)})}
+  var ul=document.getElementById('todoList');ul.innerHTML='';
+  var todos=(p.todoItems&&p.todoItems.length)?p.todoItems:[];
+  if(!todos.length){ul.innerHTML='<div class="empty-state">Nenhuma pend\u00eancia registrada.</div>'}
+  else{todos.forEach(function(it){var li=document.createElement('li');li.textContent=it;ul.appendChild(li)})}
+  var tl=document.getElementById('timeline');tl.innerHTML='';
+  var hist=(p.historyItems&&p.historyItems.length)?p.historyItems:[];
+  if(!hist.length){tl.innerHTML='<div class="empty-state">Sem hist\u00f3rico registrado para este projeto.</div>'}
+  else{hist.forEach(function(h){var div=document.createElement('div');div.className='timeline-item'+(h.success?' success':'');var dotDiv=document.createElement('div');dotDiv.className='timeline-dot';var dateDiv=document.createElement('div');dateDiv.className='timeline-date';dateDiv.textContent=(h.date||'Update')+(h.success?' \u2705':'');var textDiv=document.createElement('div');textDiv.className='timeline-text';textDiv.innerHTML=h.text||'';div.appendChild(dotDiv);div.appendChild(dateDiv);div.appendChild(textDiv);tl.appendChild(div)})}
+  renderMacroPlan(p.macroPlan);
+}
+
+function renderMacroPlan(mp){
+  var c=document.getElementById('macroPlanContainer');c.innerHTML='';
+  if(!mp||!mp.headers||!mp.rows||!mp.rows.length){c.innerHTML='<div class="empty-state">Sem Macro Plan definido para este projeto.</div>';return}
+  var wrap=document.createElement('div');wrap.className='macro-wrap';
+  var table=document.createElement('table');table.className='macro-table';
+  var thead=document.createElement('thead');var trh=document.createElement('tr');
+  mp.headers.forEach(function(h){var th=document.createElement('th');th.textContent=h;trh.appendChild(th)});
+  thead.appendChild(trh);table.appendChild(thead);
+  var tbody=document.createElement('tbody');
+  mp.rows.forEach(function(r){var tr=document.createElement('tr');var td0=document.createElement('td');td0.textContent=r.activity||'';tr.appendChild(td0);(r.cells||[]).forEach(function(cell){var td=document.createElement('td');var v=String(cell||'').trim();if(v&&v!=='0'&&v!=='-'){td.className='filled';td.textContent=''}tr.appendChild(td)});tbody.appendChild(tr)});
+  table.appendChild(tbody);wrap.appendChild(table);c.appendChild(wrap);
+}
+
+function updateProgress(startStr,endStr){
+  var start=parseDate(startStr);var end=parseDate(endStr);
+  var fill=document.getElementById('progressFill');var pctEl=document.getElementById('progressPct');
+  if(!start||!end){fill.style.width='0%';pctEl.textContent='\u2014';return}
+  var now=new Date();var total=end-start;var done=Math.min(Math.max(now-start,0),total);var pct=Math.round((done/total)*100);
+  fill.style.width=pct+'%';pctEl.textContent=pct+'% complete';
+}
+
+function populateDropdown(){
+  var sel=document.getElementById('projectSelect');sel.innerHTML='';
+  Object.keys(PROJECTS).forEach(function(name){var opt=document.createElement('option');opt.value=name;opt.textContent=name;if(name===CURRENT_PROJECT)opt.selected=true;sel.appendChild(opt)});
+}
+document.getElementById('projectSelect').addEventListener('change',function(e){renderProject(e.target.value)});
+
+function findLabelPosition(rows,label){var lo=label.toLowerCase();for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){if(String(row[c]||'').trim().toLowerCase()===lo)return{row:r,col:c}}}return null}
+function findLabelValueSimple(rows,label){var pos=findLabelPosition(rows,label);if(!pos)return null;var row=rows[pos.row]||[];for(var k=pos.col+1;k<row.length;k++){var v=row[k];if(v!==''&&v!==null&&v!==undefined)return v}if(rows[pos.row+1]){var v2=rows[pos.row+1][pos.col];if(v2!==''&&v2!==null&&v2!==undefined)return v2}return null}
+
+function readRangeAsParagraphs(rows,r1,r2,c1,c2){
+  var paras=[];
+  for(var r=r1;r<=r2;r++){if(!rows[r])continue;for(var c=c1;c<=c2;c++){var v=String(rows[r][c]||'').trim();if(v){v.split(/\r?\n/).forEach(function(line){line=line.trim();if(line)paras.push(line)})}}}
+  return paras;
+}
+function readRangeAsBullets(rows,r1,r2,c1,c2){
+  var collected=[];
+  for(var r=r1;r<=r2;r++){if(!rows[r])continue;for(var c=c1;c<=c2;c++){var v=String(rows[r][c]||'').trim();if(v)collected.push(v)}}
+  var text=collected.join(' ');
+  text=text.replace(/[\u2013\u2014]/g,'-');
+  var parts=text.split(/(?:^|\s)-\s+/);
+  return parts.map(function(s){return s.trim()}).filter(Boolean);
+}
+
+function parseHistoryItem(text){
+  var t=String(text||'').trim();var date='Update',body=t;
+  var datePatterns=[/^(\d{1,2}\/\d{1,2}\/\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/,/^(\d{4}-\d{2}-\d{2})\s*[\u2014\u2013\-:]\s*(.+)$/,/^([A-Z][a-z]{2,9}\s+\d{1,2}(?:\s*[\-\u2013]\s*(?:[A-Z][a-z]{2,9}\s+)?\d{1,2})?,?\s+\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/,/^([A-Z][a-z]{2,9}\s*[\-\u2013\/]\s*[A-Z][a-z]{2,9}\s+\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/,/^([A-Z][a-z]{2,9}\s+\d{4})\s*[\u2014\u2013\-:]\s*(.+)$/];
+  for(var i=0;i<datePatterns.length;i++){var m=t.match(datePatterns[i]);if(m){date=m[1].trim();body=m[2].trim();break}}
+  var html='';var titleMatch=body.match(/^([^:.\u2014\u2013]{3,80}?)\s*[:\u2014\u2013]\s*(.+)$/);
+  if(titleMatch){var title=titleMatch[1].trim();if(title.length>0)title=title.charAt(0).toUpperCase()+title.slice(1);html='<strong>'+escapeHtml(title)+'</strong> \u2014 '+escapeHtml(titleMatch[2].trim())}else{html=escapeHtml(body)}
+  var success=/go-live|launched|sucesso|lan\u00e7ado/i.test(body);
+  return{date:date,text:html,success:success};
+}
+
+function parseProjectSheet(sheet){
+  var rows=XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false});
+  var pName=findLabelValueSimple(rows,'Project Name');
+  if(!pName)return null;
+  var data={projectName:String(pName).trim(),subtitle:'Executive Status Report',logoChar:String(pName).trim().charAt(0).toUpperCase(),market:findLabelValueSimple(rows,'Market')||'',ossdl:findLabelValueSimple(rows,'OSS DL')||'',pm:findLabelValueSimple(rows,'Project Manager')||'',bo:findLabelValueSimple(rows,'Business Owner')||'',tipo:findLabelValueSimple(rows,'Tipo')||'',phase:findLabelValueSimple(rows,'Phase')||'',rag:findLabelValueSimple(rows,'RAG')||'',budget:findLabelValueSimple(rows,'Budget'),priority:findLabelValueSimple(rows,'Priority')||'',startDate:findLabelValueSimple(rows,'Start Date')||'',endDate:findLabelValueSimple(rows,'End Date')||'',productionUrl:'',scopeParagraphs:[],todoItems:[],historyItems:[],team:[],links:[],macroPlan:null};
+  // FIXED RANGES
+  data.scopeParagraphs=readRangeAsParagraphs(rows,20,37,1,12);     // B21:M38
+  data.todoItems=readRangeAsBullets(rows,20,37,13,23);             // N21:X38
+  var histBullets=readRangeAsBullets(rows,40,57,1,12);             // B41:M58
+  data.historyItems=histBullets.map(parseHistoryItem);
+  // TEAM
+  var teamHeaderIdx=-1;var headerCols={};
+  for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;var cols={};for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(lo==='vendor')cols.vendor=c;if(lo==='resource name')cols.name=c;if(lo==='function')cols.func=c;if(lo==='email')cols.email=c}if(cols.vendor!==undefined&&cols.name!==undefined&&cols.func!==undefined){teamHeaderIdx=r;headerCols=cols;break}}
+  if(teamHeaderIdx!==-1){var teamStop=['escope','scope','to do list','history','file log','macro plan','file name'];for(var r=teamHeaderIdx+1;r<rows.length;r++){var row=rows[r];if(!row)continue;var stop=false;for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(teamStop.indexOf(lo)!==-1){stop=true;break}}if(stop)break;var vendor=String(row[headerCols.vendor]||'').trim();var name=String(row[headerCols.name]||'').trim();var func=String(row[headerCols.func]||'').trim();var email=headerCols.email!==undefined?String(row[headerCols.email]||'').trim():'';if(!vendor&&!name&&!func&&!email)continue;data.team.push({vendor:vendor,name:name,func:func,email:email})}}
+  // URLs
+  for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(lo==='production'||lo==='production env'||lo==='production environment'){for(var k=c+1;k<row.length;k++){var v=String(row[k]||'').trim();if(/^https?:\/\//.test(v)){data.productionUrl=v;break}}}}if(data.productionUrl)break}
+  if(data.productionUrl){data.links.push({icon:'\uD83C\uDF10',title:'Production Environment',url:data.productionUrl,display:data.productionUrl})}
+  for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){var lo=String(row[c]||'').trim().toLowerCase();if(lo.indexOf('a&p exception')===0){for(var k=c+1;k<row.length;k++){var v=String(row[k]||'').trim();if(/^https?:\/\//.test(v)){data.links.push({icon:'\uD83D\uDD10',title:'A&P Exception',url:v,display:v});break}}}}}
+  // MACRO PLAN
+  var macroPos=findLabelPosition(rows,'Macro Plan');
+  if(macroPos){var headerRowIdx=-1;for(var r=macroPos.row+1;r<rows.length&&r<macroPos.row+5;r++){var row=rows[r];if(!row)continue;var hasHdr=false;for(var c=macroPos.col+1;c<row.length;c++){if(String(row[c]||'').trim()){hasHdr=true;break}}if(hasHdr){headerRowIdx=r;break}}if(headerRowIdx!==-1){var headerRow=rows[headerRowIdx];var headers=['Activity'];var colIndices=[];for(var c=macroPos.col+1;c<headerRow.length;c++){var hv=String(headerRow[c]||'').trim();if(hv){headers.push(hv);colIndices.push(c)}}var macroRows=[];for(var r=headerRowIdx+1;r<rows.length;r++){var row=rows[r];if(!row)break;var activity=String(row[macroPos.col]||'').trim();if(!activity){for(var c=0;c<=macroPos.col;c++){var v=String(row[c]||'').trim();if(v){activity=v;break}}}var cells=colIndices.map(function(ci){return String(row[ci]||'').trim()});var allEmpty=!activity&&cells.every(function(v){return v===''});if(allEmpty)break;if(!activity)continue;var actLo=activity.toLowerCase();if(['file name','owner','url','date'].indexOf(actLo)!==-1)break;macroRows.push({activity:activity,cells:cells})}if(macroRows.length){data.macroPlan={headers:headers,rows:macroRows}}}}
+  return data;
+}
+
+document.getElementById('fileInput').addEventListener('change',function(e){
+  var file=e.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(evt){try{var data=new Uint8Array(evt.target.result);LOADED_WORKBOOK=XLSX.read(data,{type:'array',cellDates:true});processWorkbook()}catch(err){console.error(err);showToast('Erro ao ler o arquivo: '+err.message,true)}};
+  reader.readAsArrayBuffer(file);
+});
+
+function processWorkbook(){
+  if(!LOADED_WORKBOOK)return;
+  var sheetNames=LOADED_WORKBOOK.SheetNames;var loadedCount=0;var newProjects={};
+  sheetNames.forEach(function(name){if(IGNORED_SHEETS.indexOf(name.toLowerCase())!==-1)return;try{var parsed=parseProjectSheet(LOADED_WORKBOOK.Sheets[name]);if(parsed){newProjects[name]=parsed;loadedCount++}}catch(err){console.warn('Failed to parse sheet '+name,err)}});
+  if(loadedCount===0){showToast('Nenhuma aba de projeto v\u00e1lida encontrada (com label "Project Name").',true);refreshAdminList();return}
+  PROJECTS=newProjects;var preferredOrder=['Vesta',sheetNames[0]];CURRENT_PROJECT=null;
+  for(var i=0;i<preferredOrder.length;i++){if(PROJECTS[preferredOrder[i]]){CURRENT_PROJECT=preferredOrder[i];break}}
+  if(!CURRENT_PROJECT)CURRENT_PROJECT=Object.keys(PROJECTS)[0];
+  populateDropdown();renderProject(CURRENT_PROJECT);refreshAdminList();
+  showToast(loadedCount+' projeto(s) carregado(s) com sucesso.');
+}
+
+function openAdminModal(){document.getElementById('adminModal').classList.add('active');refreshAdminList();var hint=document.getElementById('modalHint');if(LOADED_WORKBOOK){hint.innerHTML='\uD83D\uDCA1 Abas dispon\u00edveis no arquivo: <strong>'+escapeHtml(LOADED_WORKBOOK.SheetNames.join(', '))+'</strong>'}else{hint.innerHTML='\uD83D\uDCA1 Carregue primeiro o arquivo .xlsm com o bot\u00e3o "Atualizar dados".'}}
+function closeAdminModal(){document.getElementById('adminModal').classList.remove('active')}
+function addProjectFromTab(){var name=document.getElementById('newTabName').value.trim();if(!name){showToast('Informe o nome da aba.',true);return}if(!LOADED_WORKBOOK){showToast('Carregue o arquivo .xlsm primeiro.',true);return}if(LOADED_WORKBOOK.SheetNames.indexOf(name)===-1){showToast('Aba "'+name+'" n\u00e3o encontrada. Dispon\u00edveis: '+LOADED_WORKBOOK.SheetNames.join(', '),true);return}var parsed=parseProjectSheet(LOADED_WORKBOOK.Sheets[name]);if(!parsed){showToast('Aba "'+name+'" n\u00e3o tem o formato esperado (label "Project Name" n\u00e3o encontrado).',true);return}PROJECTS[name]=parsed;CURRENT_PROJECT=name;populateDropdown();renderProject(name);refreshAdminList();document.getElementById('newTabName').value='';showToast('Projeto "'+name+'" adicionado.');closeAdminModal()}
+function removeProject(name){if(Object.keys(PROJECTS).length<=1){showToast('N\u00e3o \u00e9 poss\u00edvel remover o \u00faltimo projeto.',true);return}delete PROJECTS[name];if(CURRENT_PROJECT===name){CURRENT_PROJECT=Object.keys(PROJECTS)[0];renderProject(CURRENT_PROJECT)}populateDropdown();refreshAdminList();showToast('Projeto "'+name+'" removido.')}
+function refreshAdminList(){var list=document.getElementById('adminList');list.innerHTML='';Object.keys(PROJECTS).forEach(function(name){var item=document.createElement('div');item.className='admin-item';item.innerHTML='<span><span class="tab-pill">Tab</span> '+escapeHtml(name)+'</span><button class="btn btn-danger btn-sm" onclick="removeProject(\''+name.replace(/'/g,"\\'")+'\')">\uD83D\uDDD1\uFE0F Remover</button>';list.appendChild(item)})}
+
+// ─── Carregamento automático via Github Gist (projects.json) ────────────────
+var GIST_JSON_URL='https://gist.githubusercontent.com/aldemarche/cede4609c22faef61295211706cfeb73/raw/gistfile1.txt';
+
+function applyProjectsPayload(payload){
+  var projects=(payload&&payload.projects)?payload.projects:payload;
+  if(!projects||typeof projects!=='object'||Object.keys(projects).length===0){
+    throw new Error('JSON não contém projetos válidos.');
+  }
+  PROJECTS=projects;
+  var sheetNames=Object.keys(projects);
+  var preferredOrder=['Vesta',sheetNames[0]];CURRENT_PROJECT=null;
+  for(var i=0;i<preferredOrder.length;i++){if(PROJECTS[preferredOrder[i]]){CURRENT_PROJECT=preferredOrder[i];break}}
+  if(!CURRENT_PROJECT)CURRENT_PROJECT=sheetNames[0];
+  populateDropdown();renderProject(CURRENT_PROJECT);refreshAdminList();
+}
+
+async function syncFromGist(isAutoLoad){
+  var btn=document.getElementById('btnSync');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Atualizando...';}
+  try{
+    var bustUrl=GIST_JSON_URL+'?_='+Date.now();
+    var resp=await fetch(bustUrl,{cache:'no-store'});
+    if(!resp.ok)throw new Error('Não foi possível buscar o JSON (status '+resp.status+').');
+    var payload=await resp.json();
+    applyProjectsPayload(payload);
+    if(!isAutoLoad)showToast('Dados atualizados a partir do JSON.');
+    if(btn){btn.textContent='🔄 Atualizar dados';}
+  }catch(err){
+    console.error(err);
+    if(!isAutoLoad)showToast('Erro ao buscar dados: '+err.message,true);
+    else console.warn('Auto-load do JSON falhou, mantendo dados padrão embutidos.',err);
+    if(btn){btn.textContent='🔄 Atualizar dados';}
+  }finally{
+    if(btn)btn.disabled=false;
+  }
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
+function init(){
+  document.getElementById('reportDate').textContent=fmtDate(new Date());
+  populateDropdown();renderProject('Vesta');
+  syncFromGist(true); // busca automática ao abrir a página, sem interação do usuário
+}
+init();
+</script>
+
+
+</body></html>
