@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)file:///Users/DEMARA16/Downloads/Projects_Status_Report_General_3.html -->
-<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Executive Project Status Report — Multi-Project</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Executive Project Status Report — Multi-Project_files/css2" rel="stylesheet">
-<script src="./Executive Project Status Report — Multi-Project_files/xlsx.full.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <style>
 :root{--primary:#0072CE;--primary-dark:#003B6F;--primary-light:#E8F4FC;--accent-green:#22C55E;--accent-yellow:#F59E0B;--accent-red:#EF4444;--bg:#F7F9FC;--card:#FFFFFF;--text:#1A2332;--muted:#64748B;--border:#E2E8F0;--shadow:0 4px 20px rgba(0,0,0,0.06);--shadow-lg:0 10px 40px rgba(0, 60, 130, 0.12);}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -46,6 +46,11 @@ html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;backgr
 .kpi-accent.green{background:var(--accent-green)}.kpi-accent.blue{background:var(--primary)}.kpi-accent.red{background:var(--accent-red)}.kpi-accent.gold{background:var(--accent-yellow)}
 .status-dot{width:12px;height:12px;border-radius:50%;background:var(--accent-green);box-shadow:0 0 0 4px rgba(34,197,94,0.2);display:inline-block}
 .section{background:var(--card);border-radius:16px;padding:28px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:24px}
+.section.exec-summary{background:linear-gradient(135deg,var(--primary-dark) 0%,#00509E 100%);border:none;box-shadow:0 10px 32px rgba(0,59,111,0.35)}
+.section.exec-summary .section-title{color:#fff}
+.section.exec-summary .section-title::before{background:linear-gradient(180deg,var(--accent-yellow),#fff)}
+.section.exec-summary .scope-block p{color:#EAF3FC;line-height:1.7}
+.section.exec-summary .scope-block p:not(:last-child){margin-bottom:14px}
 .section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--primary-dark);display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .section-title::before{content:"";width:4px;height:18px;background:linear-gradient(180deg,var(--primary),var(--accent-green));border-radius:4px}
 .snapshot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 28px}
@@ -133,30 +138,31 @@ html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;backgr
       <div class="brand">
         <div class="logo" id="projectLogo">V</div>
         <div class="title">
-          <h1 id="headerProjectName">Vesta Connexus 2.0</h1>
-          <p id="headerSubtitle">Executive Status Report</p>
+          <h1 id="headerProjectName">Vesta / Connexus 2.0</h1>
+          <p id="headerSubtitle">Pfizer Oncology CRM Modernization &mdash; Executive Status Report</p>
         </div>
       </div>
-      <div class="header-meta"><strong>Report Date</strong><span id="reportDate">June 30, 2026</span></div>
+      <div class="header-meta"><strong>Report Date</strong><span id="reportDate"></span></div>
     </div>
   </div>
   <div class="project-badge"><span class="pulse"></span> Visualizando: <strong id="currentProjectLabel">Vesta</strong></div>
   <div class="toolbar">
     <div class="toolbar-left">
-      <div class="select-wrap"><label for="projectSelect">Projeto:</label><select id="projectSelect"><option value="PfizerConmigo - New Components">PfizerConmigo - New Components</option><option value="www.crecemos.mx - migration">www.crecemos.mx - migration</option><option value="edirai.com.mx - migration H2">edirai.com.mx - migration H2</option><option value="Vesta">Vesta</option><option value="Vesta AI (Phase II)">Vesta AI (Phase II)</option><option value="Pfizerpro - Mejoras generales">Pfizerpro - Mejoras generales</option><option value="Ngenla digital pen calculator">Ngenla digital pen calculator</option><option value="MEDU Integration">MEDU Integration</option><option value="Mis Vacunas MX">Mis Vacunas MX</option><option value="PfizerPro NOLA - Consolidacion">PfizerPro NOLA - Consolidacion</option><option value="PfizerConmigo NOLA - Consolidac">PfizerConmigo NOLA - Consolidac</option><option value="ALM Panamá">ALM Panamá</option></select></div>
+      <div class="select-wrap"><label for="projectSelect">Projeto:</label><select id="projectSelect"></select></div>
     </div>
-    <input type="file" id="fileInput" accept=".xlsx,.xlsm" style="display:none">
-    <button class="btn" onclick="openAdminModal()">⚙️ Admin</button>
-    <button class="btn btn-primary" id="btnSync" onclick="syncFromGist(false)">🔄 Atualizar dados</button>
-    <button class="btn" onclick="document.getElementById(&#39;fileInput&#39;).click()" title="Upload manual de .xlsx como alternativa">📂 Upload manual (.xlsx)</button>
-    <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+    <input type="file" id="fileInput" accept=".xlsx,.xlsm" style="display:none" />
+    <button class="btn" onclick="openAdminModal()">&#9881;&#65039; Admin</button>
+    <button class="btn btn-primary" id="btnSync" onclick="syncFromGist(false)">&#128260; Atualizar dados</button>
+    <button class="btn" onclick="document.getElementById('fileInput').click()" title="Upload manual de .xlsx como alternativa">&#128194; Upload manual (.xlsx)</button>
+    <button class="btn" onclick="window.print()">&#128424;&#65039; Imprimir</button>
   </div>
   <div class="kpi-grid">
-    <div class="kpi"><div class="kpi-accent green"></div><div class="kpi-label">RAG Status</div><div class="kpi-value"><span class="status-dot" id="ragDot" style="background: rgb(34, 197, 94); box-shadow: rgba(34, 197, 94, 0.2) 0px 0px 0px 4px;"></span><span id="kpiRag">GREEN</span></div></div>
-    <div class="kpi"><div class="kpi-accent blue"></div><div class="kpi-label">Current Phase</div><div class="kpi-value"><span class="kpi-icon">⚙️</span><span id="kpiPhase">Hypercare</span></div></div>
-    <div class="kpi"><div class="kpi-accent red"></div><div class="kpi-label">Priority</div><div class="kpi-value"><span class="kpi-icon">⚡</span><span id="kpiPriority">Urgent</span></div></div>
-    <div class="kpi"><div class="kpi-accent gold"></div><div class="kpi-label">Budget</div><div class="kpi-value"><span class="kpi-icon">💰</span><span id="kpiBudget">US$ 407,000</span></div></div>
+    <div class="kpi"><div class="kpi-accent green"></div><div class="kpi-label">RAG Status</div><div class="kpi-value"><span class="status-dot" id="ragDot"></span><span id="kpiRag">GREEN</span></div></div>
+    <div class="kpi"><div class="kpi-accent blue"></div><div class="kpi-label">Current Phase</div><div class="kpi-value"><span class="kpi-icon">&#9881;&#65039;</span><span id="kpiPhase">Hypercare</span></div></div>
+    <div class="kpi"><div class="kpi-accent red"></div><div class="kpi-label">Priority</div><div class="kpi-value"><span class="kpi-icon">&#9889;</span><span id="kpiPriority">Urgent</span></div></div>
+    <div class="kpi"><div class="kpi-accent gold"></div><div class="kpi-label">Budget</div><div class="kpi-value"><span class="kpi-icon">&#128176;</span><span id="kpiBudget">US$ 407,000</span></div></div>
   </div>
+  <div class="section exec-summary" id="execSummarySection"><div class="section-title">Executive Summary</div><div class="scope-block" id="execSummaryBlock"></div></div>
   <div class="section">
     <div class="section-title">Project Snapshot</div>
     <div class="snapshot-grid">
@@ -166,49 +172,49 @@ html,body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;backgr
       <div class="info-item"><span class="info-label">Project Manager</span><span class="info-value" id="snPm">Jesus Romero</span></div>
       <div class="info-item"><span class="info-label">Business Owner</span><span class="info-value" id="snBo">David Jansen</span></div>
       <div class="info-item"><span class="info-label">Type</span><span class="info-value" id="snTipo">Project</span></div>
-      <div class="info-item"><span class="info-label">Start Date</span><span class="info-value" id="snStart">9/23/25</span></div>
-      <div class="info-item"><span class="info-label">End Date</span><span class="info-value" id="snEnd">5/14/26</span></div>
-      <div class="info-item"><span class="info-label">Production URL</span><span class="info-value" id="snUrl"><a href="https://vesta.pfizer.com/" target="_blank">vesta.pfizer.com/</a></span></div>
+      <div class="info-item"><span class="info-label">Start Date</span><span class="info-value" id="snStart">09/23/2025</span></div>
+      <div class="info-item"><span class="info-label">End Date</span><span class="info-value" id="snEnd">05/14/2026</span></div>
+      <div class="info-item"><span class="info-label">Production URL</span><span class="info-value" id="snUrl"><a href="https://vesta.pfizer.com/" target="_blank">vesta.pfizer.com</a></span></div>
     </div>
     <div class="progress-wrap">
-      <div class="progress-header"><span>Project Timeline Progress</span><span id="progressPct">100% complete</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 100%;"></div></div>
-      <div class="progress-status"><span id="progStart">9/23/25</span><span id="progEnd">5/14/26</span></div>
+      <div class="progress-header"><span>Project Timeline Progress</span><span id="progressPct">&mdash;</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-status"><span id="progStart">09/23/2025</span><span id="progEnd">05/14/2026</span></div>
     </div>
   </div>
-  <div class="section"><div class="section-title">Scope &amp; Objective</div><div class="scope-block" id="scopeBlock"><p>Vesta / Connexus 2.0 is the modernization of Pfizer Oncology’s strategic CRM, replacing/upgrading the legacy Connexus solution into a more scalable, secure, and sustainable web application built on Laravel + Vue.js, with RBAC, audit trails, improved UI/UX, configurable project/milestone workflows, integration with CDW/Snowflake/Power BI, embedded dashboards, data migration, validations, operational support, and preparation for governance/compliance in production.</p></div></div>
+  <div class="section"><div class="section-title">Scope &amp; Objective</div><div class="scope-block" id="scopeBlock"></div></div>
   <div class="two-col">
     <div class="section"><div class="section-title">Project Team</div>
-      <table class="team-table" id="teamTable"><thead><tr><th>Vendor</th><th>Resource</th><th>Function</th><th>Email</th></tr></thead><tbody><tr><td><span class="vendor-pill">Jakala</span></td><td>Tsveta Valcheva</td><td>PM</td><td><a href="mailto:Tsvetana.Valcheva@pfizer.com">Tsvetana.Valcheva@pfizer.com</a></td></tr><tr><td><span class="vendor-pill">Jakala</span></td><td>Hanna Andriiak</td><td>Back-End Dev.</td><td><a href="mailto:hanna.andriiak@pfizer.com">hanna.andriiak@pfizer.com</a></td></tr><tr><td><span class="vendor-pill">CFSA</span></td><td>Maciej Chojnowski</td><td>Data Engeneer</td><td><a href="mailto:maciej.chojnowski@pfizer.com">maciej.chojnowski@pfizer.com</a></td></tr><tr><td><span class="vendor-pill">Jakala</span></td><td>Roman Liashenko</td><td>PM</td><td><a href="mailto:Roman.Liashenko@pfizer.com">Roman.Liashenko@pfizer.com</a></td></tr></tbody></table>
+      <table class="team-table" id="teamTable"><thead><tr><th>Vendor</th><th>Resource</th><th>Function</th><th>Email</th></tr></thead><tbody></tbody></table>
     </div>
-    <div class="section"><div class="section-title">Key Links</div><div class="link-list" id="linkList"><a class="link-item" target="_blank" href="https://vesta.pfizer.com/"><div class="link-icon">🌐</div><div><div class="link-title">Production Environment</div><div class="link-url">https://vesta.pfizer.com/</div></div></a><a class="link-item" target="_blank" href="https://jira.pfizer.com/servicedesk/customer/portal/65/VRSD-761"><div class="link-icon">🔐</div><div><div class="link-title">A&amp;P Exception</div><div class="link-url">https://jira.pfizer.com/servicedesk/customer/portal/65/VRSD-761</div></div></a></div></div>
+    <div class="section"><div class="section-title">Key Links</div><div class="link-list" id="linkList"></div></div>
   </div>
-  <div class="section"><div class="section-title">Next Steps — To-Do List</div><ul class="todo-list" id="todoList"><li>Finalize and validate Vesta Snowflake views so the team can assess the data and move to production.</li><li>Close the definition of Snowflake roles for Vesta consumption, separating admin/full-access and viewer/read-only roles.</li><li>Confirm whether the only consumption/management schema for business users is the BI/published schema, and ensure views are hosted there.</li><li>Complete the Request Manager workflow for assigning VESTA roles, including approvals, training, and overnight job updates.</li><li>Create/update the final conceptual/physical model or publication documentation for Vesta→Snowflake after views are finalized.</li><li>Advance the open item “Sales KPIs Ingestion”, assessing incremental strategy vs truncate-and-load due to higher-than-expected data volumes.</li><li>Define the Vesta → Pfizer Align flow, currently interim/manual via Excel with preference for automation.</li><li>Finalize CDW→Snowflake refresh frequency, including schema and import schedule.</li><li>Validate vendor data samples for Pathways, currently under review.</li></ul></div>
-  <div class="section"><div class="section-title">Project History &amp; Milestones</div><div class="timeline" id="timeline"><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">'Oct 23, 2025</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>BRD formalization</strong> — BRD defined the CRM modernization scope, including RBAC, audit logging, Snowflake/CDW/Power BI integration, migration, validation, and compliance.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Oct 30, 2025</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Initial RAIDD decisions</strong> — Key functional decisions included single-date milestones, initiative status logic, and removal of timeline visualization.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Nov 17, 2025</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Roles &amp; user management start</strong> — Roles/permissions and user management modules began, reaching UAT status.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jan-Mar 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Data &amp; integration progress</strong> — Work advanced on Sales KPIs, Snowflake→S3, refresh frequency, ETL fixes, and Vesta→Pfizer Align.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Feb 6, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Snowflake→S3 unblocked</strong> — Data publication enabled after roles update resolved blocker.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Mar 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Migration consolidation</strong> — Connexus→Vesta migration defined (CSV export, transform, import, validation).</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Apr 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Data integration SOW</strong> — SOW requested and updated for Snowflake integration and future data scope.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Apr 30-May 8, 2026</div></div><div class="timeline-item success"><div class="timeline-dot"></div><div class="timeline-date">Update ✅</div><div class="timeline-text"><strong>Pre-go-live stabilization</strong> — Performance tuning, monitoring, and infra improvements confirmed readiness for go-live.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">May 14, 2026</div></div><div class="timeline-item success"><div class="timeline-dot"></div><div class="timeline-date">Update ✅</div><div class="timeline-text"><strong>Phase I go-live</strong> — Vesta launched, replacing Connexus with modern CRM, analytics, and integrations.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">May 15, 2026</div></div><div class="timeline-item success"><div class="timeline-dot"></div><div class="timeline-date">Update ✅</div><div class="timeline-text"><strong>Post-go-live adjustment</strong> — Vesta defined as source of truth for KAD/CKAD fields; cleanup actions initiated.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jun 9, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Snowflake governance</strong> — Views prepared for evaluation; BI/published schema defined as consumption layer.</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jun 15, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Access/roles process</strong> — Request Manager flow clarified (approvals, training, overnight updates).</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text">Jun 18, 2026</div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Update</div><div class="timeline-text"><strong>Roles &amp; views refinement</strong> — Admin and viewer roles planned; views still under validation before production.</div></div></div></div>
-  <div class="section"><div class="section-title">Macro Plan</div><div id="macroPlanContainer"><div class="macro-wrap"><table class="macro-table"><thead><tr><th>Activity</th><th>W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th><th>W6</th><th>W7</th><th>W8</th><th>W9</th><th>W10</th><th>W11</th><th>W12</th><th>W13</th><th>W14</th><th>W15</th><th>W16</th><th>W17</th><th>W18</th><th>W19</th><th>W20</th></tr></thead><tbody><tr><td>Teste 1</td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 2</td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 3</td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 4</td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 5</td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 6</td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 7</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 15</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Teste 16</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="filled"></td><td class="filled"></td><td class="filled"></td><td class="filled"></td><td class="filled"></td></tr></tbody></table></div></div></div>
-  <div class="footer"><strong>Prepared by André Liguori Demarche</strong> · OSS &amp; AI Delivery Lead, LATAM · Pfizer<br><span class="disclaimer">Confidential — for internal stakeholders only.</span></div>
+  <div class="section"><div class="section-title">Next Steps &mdash; To-Do List</div><ul class="todo-list" id="todoList"></ul></div>
+  <div class="section"><div class="section-title">Project History &amp; Milestones</div><div class="timeline" id="timeline"></div></div>
+  <div class="section"><div class="section-title">Macro Plan</div><div id="macroPlanContainer"></div></div>
+  <div class="footer"><strong>Prepared by André Liguori Demarche</strong> &middot; OSS &amp; AI Delivery Lead, LATAM &middot; Pfizer<br><span class="disclaimer">Confidential &mdash; for internal stakeholders only.</span></div>
 </div>
 <div class="modal-overlay" id="adminModal" onclick="if(event.target===this) closeAdminModal()">
   <div class="modal">
-    <button class="modal-close" onclick="closeAdminModal()">✕</button>
-    <h2>⚙️ Admin — Gerenciar Projetos</h2>
+    <button class="modal-close" onclick="closeAdminModal()">&#10005;</button>
+    <h2>&#9881;&#65039; Admin &mdash; Gerenciar Projetos</h2>
     <p class="subtitle">Adicione manualmente uma nova aba do seu arquivo .xlsx como projeto.</p>
     <div class="modal-section">
       <h3>Adicionar nova aba</h3>
       <div class="modal-form">
-        <input type="text" id="newTabName" placeholder="Ex: Vesta AI (Phase II)">
+        <input type="text" id="newTabName" placeholder="Ex: Vesta AI (Phase II)" />
         <button class="btn btn-primary" onclick="addProjectFromTab()">+ Adicionar projeto</button>
       </div>
-      <div class="modal-hint" id="modalHint">💡 Carregue primeiro o arquivo .xlsm com o botão "Atualizar dados".</div>
+      <div class="modal-hint" id="modalHint">&#128161; Carregue primeiro o arquivo .xlsm com o bot&atilde;o &quot;Atualizar dados&quot;.</div>
     </div>
-    <div class="modal-section"><h3>Projetos carregados</h3><div class="admin-list" id="adminList"><div class="admin-item"><span><span class="tab-pill">Tab</span> PfizerConmigo - New Components</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;PfizerConmigo - New Components&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> www.crecemos.mx - migration</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;www.crecemos.mx - migration&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> edirai.com.mx - migration H2</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;edirai.com.mx - migration H2&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Vesta</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Vesta&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Vesta AI (Phase II)</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Vesta AI (Phase II)&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Pfizerpro - Mejoras generales</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Pfizerpro - Mejoras generales&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Ngenla digital pen calculator</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Ngenla digital pen calculator&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> MEDU Integration</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;MEDU Integration&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> Mis Vacunas MX</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;Mis Vacunas MX&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> PfizerPro NOLA - Consolidacion</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;PfizerPro NOLA - Consolidacion&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> PfizerConmigo NOLA - Consolidac</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;PfizerConmigo NOLA - Consolidac&#39;)">🗑️ Remover</button></div><div class="admin-item"><span><span class="tab-pill">Tab</span> ALM Panamá</span><button class="btn btn-danger btn-sm" onclick="removeProject(&#39;ALM Panamá&#39;)">🗑️ Remover</button></div></div></div>
+    <div class="modal-section"><h3>Projetos carregados</h3><div class="admin-list" id="adminList"></div></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
 <script>
 var LOADED_WORKBOOK=null;var PROJECTS={};var CURRENT_PROJECT="Vesta";
 var IGNORED_SHEETS=["portfolio","dashboard","summary","resumo","index","cover","instructions","template","config","cp.dash","cp.info","summary_table","_support tickets","template_proj"];
-PROJECTS["Vesta"]={projectName:"Vesta / Connexus 2.0",subtitle:"Pfizer Oncology CRM Modernization \u2014 Executive Status Report",logoChar:"V",market:"USA",ossdl:"Andr\u00e9 Demarche",pm:"Jesus Romero",bo:"David Jansen",tipo:"Project",phase:"Hypercare",rag:"GREEN",budget:407000,priority:"Urgent",startDate:"09/23/2025",endDate:"05/14/2026",productionUrl:"https://vesta.pfizer.com/",
+PROJECTS["Vesta"]={projectName:"Vesta / Connexus 2.0",subtitle:"Pfizer Oncology CRM Modernization \u2014 Executive Status Report",logoChar:"V",market:"USA",ossdl:"Andr\u00e9 Demarche",pm:"Jesus Romero",bo:"David Jansen",tipo:"Project",phase:"Hypercare",rag:"GREEN",budget:407000,priority:"Urgent",startDate:"09/23/2025",endDate:"05/14/2026",productionUrl:"https://vesta.pfizer.com/",executiveSummary:"Over the last 30 days, Vesta Connexus 2.0 has transitioned into a post\u2013go-live phase focused on stabilization, data governance, and analytics enablement, with the platform remaining stable in production and key post-launch adjustments completed, including the establishment of Vesta as the authoritative source for account data. Current efforts are concentrated on strengthening the Snowflake data layer, including the validation and finalization of business-ready views, definition of the access model (admin vs. read-only roles), and implementation of the Request Manager workflow for controlled user provisioning. In parallel, data integration activities are ongoing, particularly around Sales KPI ingestion optimization, CDW-to-Snowflake refresh scheduling, and alignment with downstream systems such as Pfizer Align. Overall, while no critical platform risks have been identified, dependencies remain on data validation, role provisioning, and Snowflake governance to enable scalable analytics consumption across the business.",
 scopeParagraphs:["Vesta / Connexus 2.0 is the modernization of Pfizer Oncology's strategic CRM, replacing/upgrading the legacy Connexus solution into a more scalable, secure, and sustainable web application built on Laravel + Vue.js, with RBAC, audit trails, improved UI/UX, configurable project/milestone workflows, integration with CDW/Snowflake/Power BI, embedded dashboards, data migration, validations, operational support, and preparation for governance/compliance in production."],
 todoItems:["Finalize and validate Vesta Snowflake views so the team can assess the data and move to production.","Close the definition of Snowflake roles for Vesta consumption, separating admin/full-access and viewer/read-only roles.","Confirm whether the only consumption/management schema for business users is the BI/published schema, and ensure views are hosted there.","Complete the Request Manager workflow for assigning VESTA roles, including approvals, training, and overnight job updates.","Create/update the final conceptual/physical model or publication documentation for Vesta\u2192Snowflake after views are finalized.","Advance the open item \"Sales KPIs Ingestion\", assessing incremental strategy vs truncate-and-load due to higher-than-expected data volumes.","Define the Vesta \u2192 Pfizer Align flow, currently interim/manual via Excel with preference for automation.","Finalize CDW\u2192Snowflake refresh frequency, including schema and import schedule.","Validate vendor data samples for Pathways, currently under review."],
 historyItems:[
@@ -279,6 +285,10 @@ function renderProject(name){
   var scopeBlock=document.getElementById('scopeBlock');scopeBlock.innerHTML='';
   var paras=(p.scopeParagraphs&&p.scopeParagraphs.length)?p.scopeParagraphs:['Sem descri\u00e7\u00e3o de escopo definida para este projeto.'];
   paras.forEach(function(par){var pe=document.createElement('p');pe.textContent=par;scopeBlock.appendChild(pe)});
+  var execBlock=document.getElementById('execSummaryBlock');execBlock.innerHTML='';
+  var execText=(p.executiveSummary||'').trim();
+  if(execText){execText.split(/\r?\n+/).forEach(function(par){par=par.trim();if(par){var pe=document.createElement('p');pe.textContent=par;execBlock.appendChild(pe)}})}
+  else{var pe=document.createElement('p');pe.style.color='rgba(255,255,255,0.75)';pe.style.fontStyle='italic';pe.textContent='Executive Summary n\u00e3o dispon\u00edvel para este projeto.';execBlock.appendChild(pe)}
   var tbody=document.querySelector('#teamTable tbody');tbody.innerHTML='';
   var team=(p.team&&p.team.length)?p.team:[];
   if(!team.length){var trE=document.createElement('tr');trE.innerHTML='<td colspan="4" style="text-align:center;color:var(--muted);font-style:italic;padding:24px">Time do projeto n\u00e3o definido.</td>';tbody.appendChild(trE)}
@@ -327,6 +337,7 @@ document.getElementById('projectSelect').addEventListener('change',function(e){r
 
 function findLabelPosition(rows,label){var lo=label.toLowerCase();for(var r=0;r<rows.length;r++){var row=rows[r];if(!row)continue;for(var c=0;c<row.length;c++){if(String(row[c]||'').trim().toLowerCase()===lo)return{row:r,col:c}}}return null}
 function findLabelValueSimple(rows,label){var pos=findLabelPosition(rows,label);if(!pos)return null;var row=rows[pos.row]||[];for(var k=pos.col+1;k<row.length;k++){var v=row[k];if(v!==''&&v!==null&&v!==undefined)return v}if(rows[pos.row+1]){var v2=rows[pos.row+1][pos.col];if(v2!==''&&v2!==null&&v2!==undefined)return v2}return null}
+function findLabelValueBelow(rows,label){var pos=findLabelPosition(rows,label);if(!pos)return null;if(rows[pos.row+1]){var v=rows[pos.row+1][pos.col];if(v!==''&&v!==null&&v!==undefined)return String(v).trim()}return null}
 
 function readRangeAsParagraphs(rows,r1,r2,c1,c2){
   var paras=[];
@@ -360,6 +371,7 @@ function parseProjectSheet(sheet){
   // FIXED RANGES
   data.scopeParagraphs=readRangeAsParagraphs(rows,20,37,1,12);     // B21:M38
   data.todoItems=readRangeAsBullets(rows,20,37,13,23);             // N21:X38
+  data.executiveSummary=findLabelValueBelow(rows,'Executive Summary')||'';
   var histBullets=readRangeAsBullets(rows,40,57,1,12);             // B41:M58
   data.historyItems=histBullets.map(parseHistoryItem);
   // TEAM
@@ -446,6 +458,5 @@ function init(){
 }
 init();
 </script>
-
-
-</body></html>
+</body>
+</html>
